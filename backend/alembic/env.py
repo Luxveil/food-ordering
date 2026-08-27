@@ -9,7 +9,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from app.core.config import get_settings
-from app.models import Base
+from app.db.database import Base
+from app.models import User, Restaurant, Menu, MenuItem, Cart, CartItem, Coupon, Order, OrderItem, Payment, Delivery, UserPreferences
 
 settings = get_settings()
 config = context.config
