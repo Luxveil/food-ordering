@@ -365,10 +365,17 @@ async def seed():
 
     # Create all tables
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
     async with async_session_factory() as session:
+        # Check if data already exists
+        from sqlalchemy import select, func
+        result = await session.execute(select(func.count()).select_from(Restaurant))
+        count = result.scalar()
+        if count > 0:
+            print(f"Database already has {count} restaurants. Skipping seed.")
+            return
+
         # Seed users
         users = []
         for u in USERS:
