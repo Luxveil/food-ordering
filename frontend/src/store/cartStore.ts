@@ -17,7 +17,7 @@ interface CartState {
   removeItem: (itemId: number) => Promise<void>;
   clearCart: () => Promise<void>;
   calculatePrice: (couponCode?: string) => Promise<PriceBreakdown>;
-  applyCoupon: (code: string) => Promise<void>;
+  applyCoupon: (code: string) => Promise<PriceBreakdown>;
   setRestaurantId: (id: number) => void;
   loadGuestCart: () => void;
   saveGuestCart: () => void;
